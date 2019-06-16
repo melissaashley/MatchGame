@@ -93,7 +93,7 @@ module.exports = function( grunt ) {
 
 	grunt.loadNpmTasks('grunt-contrib-jshint');
 	grunt.loadNpmTasks('grunt-babel');
-    grunt.loadNpmTasks('grunt-contrib-uglify');
+	grunt.loadNpmTasks('grunt-contrib-uglify');
 
 	// Register tasks
 	grunt.registerTask( 'default', [
