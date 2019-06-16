@@ -1,6 +1,233 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+@import url("https://fonts.googleapis.com/css?family=Quicksand&display=swap");
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
 body {
-  font-family: courier, monospace;
-  background: purple;
+  line-height: 1;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+body {
+  background: #fff;
+  color: #111;
+  font-family: 'Quicksand', cursive;
+  font-size: 16px;
+}
+
+header {
+  padding: 2rem;
+  text-align: center;
+}
+
+header h1 {
+  font-size: 2.5rem;
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.top-bar {
+  display: -webkit-box;
+  /* OLD - iOS 6-, Safari 3.1-6 */
+  display: -moz-box;
+  /* OLD - Firefox 19- (buggy but mostly works) */
+  display: -ms-flexbox;
+  /* IE 10 */
+  display: -webkit-flex;
+  /* NEW - Chrome */
+  display: flex;
+  /* NEW, Spec - Opera 12.1, Firefox 20+ */
+  -webkit-flex-wrap: wrap;
+  /* OLD - iOS 6-, Safari 3.1-6, NEW - Chrome, TWEENER - IE 10 */
+  -moz-flex-wrap: wrap;
+  /* OLD - Firefox 19- */
+  -ms-flex-wrap: wrap;
+  /* IE 10 */
+  flex-wrap: wrap;
+  -webkit-justify-content: center;
+  /* OLD - iOS 6-, Safari 3.1-6, NEW - Chrome */
+  -moz-justify-content: center;
+  /* OLD - Firefox 19- */
+  -ms-flex-pack: center;
+  /* IE 10 */
+  justify-content: center;
+  padding: 1rem 2.5% 2rem;
+}
+
+.top-bar div {
+  margin: 0 1rem;
+}
+
+.top-bar .timer {
+  font-size: 1.45rem;
+}
+
+#game {
+  display: -webkit-box;
+  /* OLD - iOS 6-, Safari 3.1-6 */
+  display: -moz-box;
+  /* OLD - Firefox 19- (buggy but mostly works) */
+  display: -ms-flexbox;
+  /* IE 10 */
+  display: -webkit-flex;
+  /* NEW - Chrome */
+  display: flex;
+  /* NEW, Spec - Opera 12.1, Firefox 20+ */
+  -webkit-flex-wrap: wrap;
+  /* OLD - iOS 6-, Safari 3.1-6, NEW - Chrome, TWEENER - IE 10 */
+  -moz-flex-wrap: wrap;
+  /* OLD - Firefox 19- */
+  -ms-flex-wrap: wrap;
+  /* IE 10 */
+  flex-wrap: wrap;
+}
+
+#game .tile {
+  display: -webkit-box;
+  /* OLD - iOS 6-, Safari 3.1-6 */
+  display: -moz-box;
+  /* OLD - Firefox 19- (buggy but mostly works) */
+  display: -ms-flexbox;
+  /* IE 10 */
+  display: -webkit-flex;
+  /* NEW - Chrome */
+  display: flex;
+  /* NEW, Spec - Opera 12.1, Firefox 20+ */
+  -webkit-box-flex: 0 0 20%;
+  /* OLD - iOS 6-, Safari 3.1-6 */
+  -moz-box-flex: 0 0 20%;
+  /* OLD - Firefox 19- */
+  -webkit-flex: 0 0 20%;
+  /* Chrome */
+  -ms-flex: 0 0 20%;
+  /* IE 10 */
+  flex: 0 0 20%;
+  /* NEW, Spec - Opera 12.1, Firefox 20+ */
+  -webkit-justify-content: center;
+  /* OLD - iOS 6-, Safari 3.1-6, NEW - Chrome */
+  -moz-justify-content: center;
+  /* OLD - Firefox 19- */
+  -ms-flex-pack: center;
+  /* IE 10 */
+  justify-content: center;
+  box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.2);
+  background: #393A43;
+  height: 5rem;
+  margin: 2.5%;
+  border-radius: .5rem;
+  color: #fff;
+  font-size: 4rem;
+  text-align: center;
+  transition: all 0.35s;
+}
+
+#game .tile .icon {
+  -ms-flex-item-align: center;
+  /* IE 10 */
+  -webkit-align-self: center;
+  /* OLD - iOS 6-, Safari 3.1-6, NEW - Chrome */
+  -moz-align-self: center;
+  /* OLD - Firefox 19- */
+  align-self: center;
+  opacity: 0;
+}
+
+#game .tile.flipped {
+  background: linear-gradient(0.35turn, #0AF1F0, #E01FEF);
+}
+
+#game .tile.flipped .icon {
+  opacity: 1;
+}
+
+#game .tile:not(.flipped) {
+  cursor: pointer;
+}
+
+#game .tile:not(.flipped):hover, #game .tile:not(.flipped):focus {
+  background: #292930;
+}
+
+@media (min-width: 561px) {
+  #game .tile {
+    height: 8rem;
+  }
+}
+
+@media (min-width: 691px) {
+  #game .tile {
+    height: 9rem;
+  }
+}
+
+@media (min-width: 901px) {
+  #game .tile {
+    height: 10rem;
+  }
+}
+
+.btn {
+  box-shadow: 0 0.5rem 0.5rem rgba(0, 0, 0, 0.2);
+  background: #E01FEF;
+  padding: .75rem 1.5rem;
+  text-decoration: none;
+  color: #fff;
+  border-radius: .25rem;
+  font-weight: 700;
+  transition: all 0.35s;
+}
+
+.btn:hover, .btn:focus {
+  background: #0AF1F0;
+  color: #393A43;
 }
 
 /*# sourceMappingURL=styles.css.map */

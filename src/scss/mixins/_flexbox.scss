@@ -1,0 +1,83 @@
+@mixin d-flex() {
+	display: -webkit-box;      /* OLD - iOS 6-, Safari 3.1-6 */
+	display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
+	display: -ms-flexbox;      /* IE 10 */
+	display: -webkit-flex;     /* NEW - Chrome */
+	display: flex;             /* NEW, Spec - Opera 12.1, Firefox 20+ */
+}
+
+@mixin flex-direction($val) {
+	-webkit-flex-direction: $val; /* OLD - iOS 6-, Safari 3.1-6, NEW - Chrome, TWEENER - IE 10 */
+	   -moz-flex-direction: $val; /* OLD - Firefox 19- */
+		-ms-flex-direction: $val; /* IE 10 */
+			flex-direction: $val;
+}
+
+@mixin flex-wrap($val) {
+	-webkit-flex-wrap: $val; /* OLD - iOS 6-, Safari 3.1-6, NEW - Chrome, TWEENER - IE 10 */
+	   -moz-flex-wrap: $val; /* OLD - Firefox 19- */
+	    -ms-flex-wrap: $val; /* IE 10 */
+			flex-wrap: $val;
+}
+
+@mixin justify-content($val) {
+	-webkit-justify-content: $val; /* OLD - iOS 6-, Safari 3.1-6, NEW - Chrome */
+	   -moz-justify-content: $val; /* OLD - Firefox 19- */
+			  -ms-flex-pack: $val; /* IE 10 */
+			justify-content: $val;
+}
+
+@mixin align-items($val) {
+	-webkit-align-items: $val; /* OLD - iOS 6-, Safari 3.1-6, NEW - Chrome */
+	   -moz-align-items: $val; /* OLD - Firefox 19- */
+		 -ms-flex-align: $val; /* IE 10 */
+			align-items: $val;
+}
+
+@mixin align-content($val) {
+	-webkit-align-content: $val; /* OLD - iOS 6-, Safari 3.1-6, NEW - Chrome */
+	   -moz-align-content: $val; /* OLD - Firefox 19- */
+	   -ms-flex-line-pack: $val; /* IE 10 */
+			align-content: $val;
+}
+
+@mixin order($val) {
+	-webkit-box-ordinal-group: $val; /* OLD - iOS 6-, Safari 3.1-6 */
+	   -moz-box-ordinal-group: $val; /* OLD - Firefox 19- */
+			   -ms-flex-order: $val; /* IE 10 */
+				-webkit-order: $val; /* NEW - Chrome */
+						order: $val; /* NEW, Spec - Opera 12.1, Firefox 20+ */
+}
+
+@mixin flex-grow($val) {
+	-webkit-flex-grow: $val; /* OLD - iOS 6-, Safari 3.1-6, NEW - Chrome */
+	   -moz-flex-grow: $val; /* OLD - Firefox 19- */
+			flex-grow: $val;
+}
+
+@mixin flex-shrink($val) {
+	-webkit-flex-shrink: $val; /* OLD - iOS 6-, Safari 3.1-6, NEW - Chrome */
+	   -moz-flex-shrink: $val; /* OLD - Firefox 19- */
+			flex-shrink: $val;
+}
+
+@mixin flex-basis($val) {
+	-webkit-flex-basis: $val; /* OLD - iOS 6-, Safari 3.1-6, NEW - Chrome */
+	  -moz-aflex-basis: $val; /* OLD - Firefox 19- */
+			flex-basis: $val;
+}
+
+@mixin flex($grow, $shrink, $basis) {
+	-webkit-box-flex: $grow $shrink $basis;	/* OLD - iOS 6-, Safari 3.1-6 */
+	   -moz-box-flex: $grow $shrink $basis;	/* OLD - Firefox 19- */
+		-webkit-flex: $grow $shrink $basis;	/* Chrome */
+			-ms-flex: $grow $shrink $basis;	/* IE 10 */
+				flex: $grow $shrink $basis;	/* NEW, Spec - Opera 12.1, Firefox 20+ */
+}
+
+@mixin align-self($val) {
+   -ms-flex-item-align: $val; /* IE 10 */
+	-webkit-align-self: $val; /* OLD - iOS 6-, Safari 3.1-6, NEW - Chrome */
+	   -moz-align-self: $val; /* OLD - Firefox 19- */
+			align-self: $val;
+}

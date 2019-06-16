@@ -1,4 +1,12 @@
-body {
-    font-family: courier, monospace;
-    background: purple;
-}
+// Base
+// Custom mixins because bootstrap is #bloat :)
+@import 'mixins/flexbox';
+@import 'mixins/responsive';
+@import 'includes/reset';
+@import 'mixins/effects';
+
+// Variables
+@import 'includes/variables';
+
+// Styles
+@import 'includes/main';

@@ -84,7 +84,7 @@ module.exports = function( grunt ) {
 				options: {
 					livereload: true
 				},
-				files: [ 'src/scss/*.scss' ],
+				files: [ 'src/scss/**/*.scss' ],
 				tasks: [ 'build:css' ]
 			}
 		}

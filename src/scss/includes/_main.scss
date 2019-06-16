@@ -1,0 +1,110 @@
+body {
+    background: $body-bg;
+    color: $body-color;
+    font-family: 'Quicksand', cursive;
+    font-size: 16px;
+}
+
+header {
+    padding: 2rem;
+    text-align: center;
+    
+    h1 {
+        font-size: 2.5rem;
+    }
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.top-bar {
+    @include d-flex;
+    @include flex-wrap(wrap);
+    @include justify-content(center);
+
+    padding: 1rem 2.5% 2rem;
+
+    div {
+        margin: 0 1rem;
+    }
+
+    .timer {
+        font-size: 1.45rem;
+    }
+}
+
+#game {
+    @include d-flex;
+    @include flex-wrap(wrap);
+
+    .tile {
+        @include d-flex;
+        @include flex(0, 0, 20%);
+        @include justify-content(center);
+        @include box-shadow(1rem);
+
+        background: $grey;
+        height: 5rem;
+        margin: 2.5%;
+        border-radius: .5rem;
+        color: $white;
+        font-size: 4rem;
+        text-align: center;
+        transition: all $transition-speed;
+       
+        .icon {
+            @include align-self(center);
+
+            opacity: 0;
+        }
+
+        &.flipped {
+            background: linear-gradient(0.35turn, $primary, $secondary);
+            
+            .icon {
+                opacity: 1;
+            }
+        }
+
+        &:not(.flipped) {
+            cursor: pointer;
+
+            &:hover,
+            &:focus {
+                background: darken($grey, 7%);
+            }
+        }
+
+        @include min-bp(sm) {
+            height: 8rem;
+        }
+    
+        @include min-bp(md) {
+            height: 9rem;
+        }
+    
+        @include min-bp(lg) {
+            height: 10rem;
+        }
+    }
+}
+
+.btn {
+    @include box-shadow(.5rem);
+
+    background: $secondary;
+    padding: .75rem 1.5rem;
+    text-decoration: none;
+    color: $white;
+    border-radius: .25rem;
+    font-weight: 700;
+    transition: all $transition-speed;
+
+    &:hover,
+    &:focus {
+        background: $primary;
+        color: $grey;
+    }
+}
