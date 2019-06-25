@@ -41,7 +41,7 @@ module.exports = function( grunt ) {
 				options : {
 				  sourceMap : true
 				},
-				src : 'dist/**/*.min.js',
+				src : 'dist/js/app.min.js',
 				dest : 'dist/js/bundle.min.js'
 			}
 		},
@@ -84,8 +84,8 @@ module.exports = function( grunt ) {
 				options: {
 					livereload: true
 				},
-				files: [ 'src/scss/**/*.scss' ],
-				tasks: [ 'build:css' ]
+				files: [ 'src/js/app.js', 'src/scss/**/*.scss' ],
+				tasks: [ 'build:css', 'build:js' ]
 			}
 		}
 
