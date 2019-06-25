@@ -2,7 +2,7 @@
    v2.0 | 20110126
    License: none (public domain)
 */
-@import url("https://fonts.googleapis.com/css?family=Quicksand&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Quicksand:400,700&display=swap");
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -53,6 +53,29 @@ table {
   border-spacing: 0;
 }
 
+.btn {
+  box-shadow: 0 0.5rem 0.5rem rgba(0, 0, 0, 0.2);
+  background: #09d0b2;
+  padding: .75rem 1.5rem;
+  text-decoration: none;
+  color: #fff;
+  border-radius: .25rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: all 0.35s;
+}
+
+.btn:focus {
+  background: #09d0b2;
+  color: #fff;
+}
+
+.btn:hover {
+  background: #e4bb15;
+  color: #393A43;
+}
+
 body {
   background: #fff;
   color: #111;
@@ -69,8 +92,8 @@ header h1 {
   font-size: 2.5rem;
 }
 
-.container, #winner {
-  max-width: 900px;
+.container {
+  max-width: 800px;
   margin: 0 auto;
 }
 
@@ -99,6 +122,13 @@ header h1 {
   -ms-flex-pack: center;
   /* IE 10 */
   justify-content: center;
+  -webkit-align-items: center;
+  /* OLD - iOS 6-, Safari 3.1-6, NEW - Chrome */
+  -moz-align-items: center;
+  /* OLD - Firefox 19- */
+  -ms-flex-align: center;
+  /* IE 10 */
+  align-items: center;
   padding: 1rem 2.5% 2rem;
 }
 
@@ -106,8 +136,34 @@ header h1 {
   margin: 0 1rem;
 }
 
-.top-bar .timer {
-  font-size: 1.45rem;
+@media (min-width: 691px) {
+  .top-bar #timer,
+  .top-bar #moves {
+    font-size: 1.45rem;
+  }
+}
+
+.top-bar #timer {
+  background: #eee;
+  border-radius: .25rem;
+  padding: .5rem 1rem;
+}
+
+@media (max-width: 690px) {
+  .top-bar .reset {
+    -webkit-box-flex: 0 0 100%;
+    /* OLD - iOS 6-, Safari 3.1-6 */
+    -moz-box-flex: 0 0 100%;
+    /* OLD - Firefox 19- */
+    -webkit-flex: 0 0 100%;
+    /* Chrome */
+    -ms-flex: 0 0 100%;
+    /* IE 10 */
+    flex: 0 0 100%;
+    /* NEW, Spec - Opera 12.1, Firefox 20+ */
+    margin-top: 2rem;
+    text-align: center;
+  }
 }
 
 #game {
@@ -160,6 +216,7 @@ header h1 {
   justify-content: center;
   box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.2);
   position: relative;
+  vertical-align: middle;
   background: #393A43;
   height: 5rem;
   margin: 2.5%;
@@ -192,7 +249,7 @@ header h1 {
 }
 
 #game .tile.selected:before, #game .tile.flipped:before {
-  opacity: 1;
+  opacity: .9;
 }
 
 #game .tile.selected.bomb, #game .tile.flipped.bomb {
@@ -289,33 +346,31 @@ header h1 {
 }
 
 #winner {
+  max-width: 50%;
   opacity: 0;
-  color: #e4bb15;
+  color: #fff;
   font-size: 0;
-  font-weight: bold;
+  font-weight: 700;
   transition: all 0.35s;
+  background: linear-gradient(0.35turn, #0AF1F0, #E01FEF);
+  margin: 0 auto;
 }
 
 #winner.won {
-  margin: 3rem auto 1rem;
-  font-size: 3rem;
+  box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.2);
+  padding: 1rem;
+  border-radius: .5rem;
+  margin: 1.5rem auto -1rem;
+  font-size: 1.25rem;
   opacity: 1;
 }
 
-.btn {
-  box-shadow: 0 0.5rem 0.5rem rgba(0, 0, 0, 0.2);
-  background: #09d0b2;
-  padding: .75rem 1.5rem;
-  text-decoration: none;
-  color: #fff;
-  border-radius: .25rem;
-  font-weight: 700;
-  transition: all 0.35s;
-}
-
-.btn:hover, .btn:focus {
-  background: #e4bb15;
-  color: #393A43;
+@media (min-width: 691px) {
+  #winner.won {
+    font-size: 3rem;
+    padding: 2rem;
+    margin: 2rem auto 0;
+  }
 }
 
 /*# sourceMappingURL=styles.css.map */

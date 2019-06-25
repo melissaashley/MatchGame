@@ -1,60 +1,42 @@
-const cards = [
-  {
-    id: '1',
-    name: 'bomb'
-  },
-  {
-    id: '2',
-    name: 'diamond'
-  },
-  {
-    id: '3',
-    name: 'leaf'
-  },
-  {
-    id: '4',
-    name: 'paper'
-  },
-  {
-    id: '5',
-    name: 'bolt'
-  },
-  {
-    id: '6',
-    name: 'rocket'
-  },
-  {
-    id: '7',
-    name: 'send'
-  },
-  {
-    id: '8',
-    name: 'ghost'
-  }
-]
-
-const game = document.getElementById('game');
-const resetIt = document.getElementById("reset");
-const winner = document.getElementById("winner");
-const moves = document.getElementById("moves");
-let flippedCards = [];
+/**
+ * cards - data and duplicate
+ */
+let cards = ['bomb', 'diamond', 'leaf', 'paper', 'bolt', 'rocket', 'send', 'ghost'];
 let gridBoard = cards.concat(cards);
-let allCards = document.getElementsByClassName('tile');
-let allFlipped = document.getElementsByClassName("flipped");
-let count = 0;
 
-//gridBoard.sort(() => 0.5 - Math.random());
+/**
+ * DOM elements
+ */
+const game = document.getElementById('game');
+const resetIt = document.getElementById('reset');
+const winner = document.getElementById('winner');
+const moves = document.getElementById("moves");
+let allCards = document.getElementsByClassName('tile');
+let allFlipped = document.getElementsByClassName('flipped');
+let flippedCards = [];
+let count = 0;
 
 /**
  * startGame - start the game
  */
 const startGame = function( ) {
-  console.log('the game has started');
-
   emptyCardsArray();
 
+  // Clear board
+  game.innerHTML = '';
+
+  // Shuffle it
+  gridBoard.sort(() => 0.5 - Math.random());
+
+  generateCardBoard();
+
+  // Reset Moves
   count = 0;
   moves.innerHTML = 'Moves: ' + count;
+
+  // Reset Winner
+  winner.innerHTML = '';
+  winner.classList.remove('won');
 }
 
 /**
@@ -85,13 +67,20 @@ const flipCard = function( ) {
 const checkMatch = function( ) {
   flippedCards.push( this );
 
-  if( flippedCards.length === 2 ){
+  if ( flippedCards.length === 1 ){
+    // Remove the event listener so they can't match the identical card (double click)
+    flippedCards[0].removeEventListener( 'click', checkMatch );
+  }
 
-      if( flippedCards[0].getAttribute('data-type') === flippedCards[1].getAttribute('data-type') ){
-        cardsMatch();
-      } else {
-        cardsDontMatch();
-      }
+  if( flippedCards.length === 2 ){
+    if( flippedCards[0].getAttribute('data-type') === flippedCards[1].getAttribute('data-type') ){
+      cardsMatch();
+    } else {
+      cardsDontMatch();
+      
+      // Add listener back when cards don't match
+      flippedCards[0].addEventListener( 'click', checkMatch );
+    }
   }
 };
 
@@ -102,9 +91,16 @@ const cardsMatch = function( ) {
   flippedCards[0].classList.add('flipped');
   flippedCards[1].classList.add('flipped');
 
+  // Prevents additional moves being tallied once you have flipped the correct cards
+  flippedCards[0].removeEventListener( 'click', checkMatch );
+  flippedCards[1].removeEventListener( 'click', checkMatch );
+
   addMove();
   removeSelectedAll();
   emptyCardsArray();
+
+  // Check if the game was won after the last match
+  wonGame();
 }
 
 /**
@@ -124,7 +120,7 @@ const cardsDontMatch = function( ) {
 
 /**
  * removeSelectedAll - remove selected from all cards when cards do not match
- * TODO: Handle this better, instead of removing classes prevent the clicks.
+ * TODO: Handle this better, instead of removing classes prevent the clicks
  */
 const removeSelectedAll = function( ) {
   for ( let card of allCards ) {
@@ -140,6 +136,9 @@ const wonGame = function( ) {
 
   if ( totalCards === allFlipped.length ){
     winner.classList.add('won');
+    winner.innerHTML = 'You won the game!';
+
+    window.scrollTo(0, 0);
   }
 }
 
@@ -157,15 +156,18 @@ const addMove = function( ) {
  * 
  * @param {Object} cards
  */
-for ( let eachCard of gridBoard ) {
-  const card = document.createElement('div');
+const generateCardBoard = function( ) {
+  for ( let eachCard of gridBoard ) {
+    const card = document.createElement('div');
 
-  card.classList.add('tile', eachCard.name);
-  card.dataset.type = eachCard.id;
-  
-  game.appendChild(card);
+    card.classList.add('tile', eachCard);
+    card.dataset.type = eachCard;
+    
+    game.appendChild(card);
 
-  card.addEventListener( 'click', flipCard );
-  card.addEventListener( 'click', checkMatch );
-  card.addEventListener( 'click', wonGame );
+    card.addEventListener( 'click', flipCard );
+    card.addEventListener( 'click', checkMatch );
+  }
 }
+
+startGame();

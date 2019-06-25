@@ -8,7 +8,32 @@ $primary: #e4bb15;
 $secondary: #09d0b2;
 
 // Fonts
-@import url('https://fonts.googleapis.com/css?family=Quicksand&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Quicksand:400,700&display=swap');
 
 // Other
 $transition-speed: .35s;
+
+// Button Styles
+.btn {
+    @include box-shadow(.5rem);
+
+    background: $secondary;
+    padding: .75rem 1.5rem;
+    text-decoration: none;
+    color: $white;
+    border-radius: .25rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: all $transition-speed;
+
+    &:focus {
+        background: $secondary;
+        color: $white;
+    }
+
+    &:hover {
+        background: $primary;
+        color: $grey
+    }
+}

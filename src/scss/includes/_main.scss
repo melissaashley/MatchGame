@@ -15,7 +15,7 @@ header {
 }
 
 .container {
-    max-width: 900px;
+    max-width: 800px;
     margin: 0 auto;
 }
 
@@ -23,6 +23,7 @@ header {
     @include d-flex;
     @include flex-wrap(wrap);
     @include justify-content(center);
+    @include align-items(center);
 
     padding: 1rem 2.5% 2rem;
 
@@ -30,8 +31,26 @@ header {
         margin: 0 1rem;
     }
 
-    .timer {
-        font-size: 1.45rem;
+    #timer,
+    #moves {
+        @include min-bp(md) {
+            font-size: 1.45rem;
+        }
+    }
+
+    #timer {
+        background: #eee;
+        border-radius: .25rem;
+        padding: .5rem 1rem;
+    }
+
+    .reset {
+        @include bp(md) {
+            @include flex(0, 0, 100%);
+
+            margin-top: 2rem;
+            text-align: center;
+        }
     }
 }
 
@@ -46,6 +65,7 @@ header {
         @include box-shadow(1rem);
 
         position: relative;
+        vertical-align: middle;
         background: $grey;
         height: 5rem;
         margin: 2.5%;
@@ -82,7 +102,7 @@ header {
         &.flipped {
 
             &:before {
-                opacity: 1;
+                opacity: .9;
             }
 
             &.bomb {
@@ -181,36 +201,33 @@ header {
     }
 }
 
+$tertiary: #0AF1F0;
+$quad: #E01FEF;
+
 #winner {
-    @extend .container;
-
+    max-width: 50%;
     opacity: 0;
-    color: $primary;
-    font-size: 0;
-    font-weight: bold;
-    transition: all $transition-speed;
-
-    &.won {
-        margin: 3rem auto 1rem;
-        font-size: 3rem;
-        opacity: 1;
-    }
-}
-
-.btn {
-    @include box-shadow(.5rem);
-
-    background: $secondary;
-    padding: .75rem 1.5rem;
-    text-decoration: none;
     color: $white;
-    border-radius: .25rem;
+    font-size: 0;
     font-weight: 700;
     transition: all $transition-speed;
+    background: linear-gradient(0.35turn, $tertiary, $quad);
+    margin: 0 auto;
 
-    &:hover,
-    &:focus {
-        background: $primary;
-        color: $grey;
+    &.won {
+        @include box-shadow(1rem);
+
+        padding: 1rem;
+        border-radius: .5rem;
+        margin: 1.5rem auto -1rem;
+        font-size: 1.25rem;
+        opacity: 1;
+
+        @include min-bp(md) {
+            font-size: 3rem;
+            padding: 2rem;
+            margin: 2rem auto 0;
+        }
     }
 }
+
