@@ -36,9 +36,12 @@ const cards = [
 const game = document.getElementById('game');
 const resetIt = document.getElementById("reset");
 const winner = document.getElementById("winner");
+const moves = document.getElementById("moves");
 let flippedCards = [];
 let gridBoard = cards.concat(cards);
+let allCards = document.getElementsByClassName('tile');
 let allFlipped = document.getElementsByClassName("flipped");
+let count = 0;
 
 //gridBoard.sort(() => 0.5 - Math.random());
 
@@ -49,6 +52,9 @@ const startGame = function( ) {
   console.log('the game has started');
 
   emptyCardsArray();
+
+  count = 0;
+  moves.innerHTML = 'Moves: ' + count;
 }
 
 /**
@@ -62,6 +68,7 @@ resetIt.addEventListener( 'click', startGame );
  * @param {Array} flippedCards
  */
 const emptyCardsArray = () => { flippedCards = []; }
+
 
 /**
  * flipCard - add selected class when selected
@@ -94,9 +101,9 @@ const checkMatch = function( ) {
 const cardsMatch = function( ) {
   flippedCards[0].classList.add('flipped');
   flippedCards[1].classList.add('flipped');
-  flippedCards[0].classList.remove('selected');
-  flippedCards[1].classList.remove('selected');
-  
+
+  addMove();
+  removeSelectedAll();
   emptyCardsArray();
 }
 
@@ -104,6 +111,8 @@ const cardsMatch = function( ) {
  * cardsDontMatch - the cards do NOT match
  */
 const cardsDontMatch = function( ) {
+  addMove();
+
   setTimeout( function() {
     flippedCards[0].classList.remove('selected');
     flippedCards[1].classList.remove('selected');
@@ -115,20 +124,32 @@ const cardsDontMatch = function( ) {
 
 /**
  * removeSelectedAll - remove selected from all cards when cards do not match
- * TODO: Handle this better, user should not be able to select more than two cards at a time.
+ * TODO: Handle this better, instead of removing classes prevent the clicks.
  */
 const removeSelectedAll = function( ) {
-  let allCards = document.getElementsByClassName('tile');
-
   for ( let card of allCards ) {
     card.classList.remove('selected');
   }
 }
 
+/**
+ * wonGame - notification if the user wins the game
+ */
 const wonGame = function( ) {
-  if ( 16 === allFlipped.length ){
+  let totalCards = 16;
+
+  if ( totalCards === allFlipped.length ){
     winner.classList.add('won');
   }
+}
+
+/**
+ * addMove - update the number of moves
+ */
+const addMove = function( ) {
+  count += 1;
+
+  moves.innerHTML = 'Moves: ' + count;
 }
 
 /**
@@ -136,8 +157,7 @@ const wonGame = function( ) {
  * 
  * @param {Object} cards
  */
-
-for( let eachCard of gridBoard ) {
+for ( let eachCard of gridBoard ) {
   const card = document.createElement('div');
 
   card.classList.add('tile', eachCard.name);
