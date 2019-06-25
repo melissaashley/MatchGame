@@ -15,6 +15,7 @@ let allCards = document.getElementsByClassName('tile');
 let allFlipped = document.getElementsByClassName('flipped');
 let flippedCards = [];
 let count = 0;
+let interval;
 
 /**
  * startGame - start the game
@@ -30,13 +31,14 @@ const startGame = function( ) {
 
   generateCardBoard();
 
-  // Reset Moves
+  startTimer();
+
+  // Reset 
   count = 0;
   moves.innerHTML = 'Moves: ' + count;
-
-  // Reset Winner
   winner.innerHTML = '';
   winner.classList.remove('won');
+  timer.innerHTML = '0 seconds';
 }
 
 /**
@@ -50,7 +52,6 @@ resetIt.addEventListener( 'click', startGame );
  * @param {Array} flippedCards
  */
 const emptyCardsArray = () => { flippedCards = []; }
-
 
 /**
  * flipCard - add selected class when selected
@@ -139,6 +140,8 @@ const wonGame = function( ) {
     winner.innerHTML = 'You won the game!';
 
     window.scrollTo(0, 0);
+
+    stopTimer();
   }
 }
 
@@ -149,6 +152,25 @@ const addMove = function( ) {
   count += 1;
 
   moves.innerHTML = 'Moves: ' + count;
+}
+
+/**
+ * startTimer - start the timer
+ */
+const startTimer = function( ) {
+  let second = 0;
+
+  interval = setInterval( function() {
+      timer.innerHTML = second + ' seconds';
+      second++;
+  }, 1000 );
+}
+
+/**
+ * stopTimer - stop the timer
+ */
+const stopTimer = function( ) {
+  clearInterval(interval);
 }
 
 /**
