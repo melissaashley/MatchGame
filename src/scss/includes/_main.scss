@@ -45,6 +45,7 @@ header {
         @include justify-content(center);
         @include box-shadow(1rem);
 
+        position: relative;
         background: $grey;
         height: 5rem;
         margin: 2.5%;
@@ -52,33 +53,122 @@ header {
         color: $white;
         font-size: 4rem;
         text-align: center;
+        box-sizing: border-box;
+        border: 5px solid transparent;
         transition: all $transition-speed;
-       
-        .icon {
-            @include align-self(center);
 
+        &:before {
+            position: absolute;
+            top: 30%;
+            content: '';
+            display: block;
+            font-family: 'FontAwesome';
+            font-size: 2rem;
             opacity: 0;
+            transition: all .1s;
         }
 
-        &.flipped {
-            background: linear-gradient(0.35turn, $primary, $secondary);
-            
-            .icon {
-                opacity: 1;
-            }
-        }
-
-        &:not(.flipped) {
+        &:not(.flipped),
+        &:not(.selected) {
             cursor: pointer;
 
             &:hover,
             &:focus {
-                background: darken($grey, 7%);
+                background-color: darken($grey, 7%);
             }
+        }
+
+        &.selected,
+        &.flipped {
+
+            &:before {
+                opacity: 1;
+            }
+
+            &.bomb {
+                background-color: #c72323;
+                
+                &:before {
+                    content: '\f1e2';
+                }
+            }
+
+            &.diamond {
+                background-color: #e02d8a;
+
+                &:before {
+                    content: '\f219';
+                }
+            }
+
+            &.leaf {
+                background-color: #1dcd14;
+
+                &:before {
+                    content: '\f06c';
+                }
+            }
+
+            &.paper {
+                background-color: #b436d9;
+
+                &:before {
+                    content: '\f0c6';
+                }
+            }
+
+            &.bolt {
+                background-color: #e4c911;
+
+                &:before {
+                    content: '\f0e7';
+                }
+            }
+
+            &.rocket {
+                background-color: #128ae6;
+
+                &:before {
+                    content: '\f135';
+                }
+            }
+
+            &.send {
+                background-color: #12e6bc;
+
+                &:before {
+                    content: '\f1d8';
+                }
+            }
+
+            &.ghost {
+                background-color: #ea9e1b;
+
+                &:before {
+                    content: '\f2ac';
+                }
+            }
+        }
+
+        &.flipped {
+           &:before {
+               top: 25%;
+               font-size: 2.5rem;
+           }
         }
 
         @include min-bp(sm) {
             height: 8rem;
+
+            &:before {
+                top: 40%;
+            }
+
+            &.flipped {
+                &:before {
+                    top: 35%;
+                }
+            }
         }
     
         @include min-bp(md) {
@@ -88,6 +178,22 @@ header {
         @include min-bp(lg) {
             height: 10rem;
         }
+    }
+}
+
+#winner {
+    @extend .container;
+
+    opacity: 0;
+    color: $primary;
+    font-size: 0;
+    font-weight: bold;
+    transition: all $transition-speed;
+
+    &.won {
+        margin: 3rem auto 1rem;
+        font-size: 3rem;
+        opacity: 1;
     }
 }
 

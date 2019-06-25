@@ -69,7 +69,7 @@ header h1 {
   font-size: 2.5rem;
 }
 
-.container {
+.container, #winner {
   max-width: 900px;
   margin: 0 auto;
 }
@@ -159,6 +159,7 @@ header h1 {
   /* IE 10 */
   justify-content: center;
   box-shadow: 0 1rem 1rem rgba(0, 0, 0, 0.2);
+  position: relative;
   background: #393A43;
   height: 5rem;
   margin: 2.5%;
@@ -166,39 +167,112 @@ header h1 {
   color: #fff;
   font-size: 4rem;
   text-align: center;
+  box-sizing: border-box;
+  border: 5px solid transparent;
   transition: all 0.35s;
 }
 
-#game .tile .icon {
-  -ms-flex-item-align: center;
-  /* IE 10 */
-  -webkit-align-self: center;
-  /* OLD - iOS 6-, Safari 3.1-6, NEW - Chrome */
-  -moz-align-self: center;
-  /* OLD - Firefox 19- */
-  align-self: center;
+#game .tile:before {
+  position: absolute;
+  top: 30%;
+  content: '';
+  display: block;
+  font-family: 'FontAwesome';
+  font-size: 2rem;
   opacity: 0;
+  transition: all .1s;
 }
 
-#game .tile.flipped {
-  background: linear-gradient(0.35turn, #0AF1F0, #E01FEF);
-}
-
-#game .tile.flipped .icon {
-  opacity: 1;
-}
-
-#game .tile:not(.flipped) {
+#game .tile:not(.flipped), #game .tile:not(.selected) {
   cursor: pointer;
 }
 
-#game .tile:not(.flipped):hover, #game .tile:not(.flipped):focus {
-  background: #292930;
+#game .tile:not(.flipped):hover, #game .tile:not(.flipped):focus, #game .tile:not(.selected):hover, #game .tile:not(.selected):focus {
+  background-color: #292930;
+}
+
+#game .tile.selected:before, #game .tile.flipped:before {
+  opacity: 1;
+}
+
+#game .tile.selected.bomb, #game .tile.flipped.bomb {
+  background-color: #c72323;
+}
+
+#game .tile.selected.bomb:before, #game .tile.flipped.bomb:before {
+  content: '\f1e2';
+}
+
+#game .tile.selected.diamond, #game .tile.flipped.diamond {
+  background-color: #e02d8a;
+}
+
+#game .tile.selected.diamond:before, #game .tile.flipped.diamond:before {
+  content: '\f219';
+}
+
+#game .tile.selected.leaf, #game .tile.flipped.leaf {
+  background-color: #1dcd14;
+}
+
+#game .tile.selected.leaf:before, #game .tile.flipped.leaf:before {
+  content: '\f06c';
+}
+
+#game .tile.selected.paper, #game .tile.flipped.paper {
+  background-color: #b436d9;
+}
+
+#game .tile.selected.paper:before, #game .tile.flipped.paper:before {
+  content: '\f0c6';
+}
+
+#game .tile.selected.bolt, #game .tile.flipped.bolt {
+  background-color: #e4c911;
+}
+
+#game .tile.selected.bolt:before, #game .tile.flipped.bolt:before {
+  content: '\f0e7';
+}
+
+#game .tile.selected.rocket, #game .tile.flipped.rocket {
+  background-color: #128ae6;
+}
+
+#game .tile.selected.rocket:before, #game .tile.flipped.rocket:before {
+  content: '\f135';
+}
+
+#game .tile.selected.send, #game .tile.flipped.send {
+  background-color: #12e6bc;
+}
+
+#game .tile.selected.send:before, #game .tile.flipped.send:before {
+  content: '\f1d8';
+}
+
+#game .tile.selected.ghost, #game .tile.flipped.ghost {
+  background-color: #ea9e1b;
+}
+
+#game .tile.selected.ghost:before, #game .tile.flipped.ghost:before {
+  content: '\f2ac';
+}
+
+#game .tile.flipped:before {
+  top: 25%;
+  font-size: 2.5rem;
 }
 
 @media (min-width: 561px) {
   #game .tile {
     height: 8rem;
+  }
+  #game .tile:before {
+    top: 40%;
+  }
+  #game .tile.flipped:before {
+    top: 35%;
   }
 }
 
@@ -214,9 +288,23 @@ header h1 {
   }
 }
 
+#winner {
+  opacity: 0;
+  color: #e4bb15;
+  font-size: 0;
+  font-weight: bold;
+  transition: all 0.35s;
+}
+
+#winner.won {
+  margin: 3rem auto 1rem;
+  font-size: 3rem;
+  opacity: 1;
+}
+
 .btn {
   box-shadow: 0 0.5rem 0.5rem rgba(0, 0, 0, 0.2);
-  background: #E01FEF;
+  background: #09d0b2;
   padding: .75rem 1.5rem;
   text-decoration: none;
   color: #fff;
@@ -226,7 +314,7 @@ header h1 {
 }
 
 .btn:hover, .btn:focus {
-  background: #0AF1F0;
+  background: #e4bb15;
   color: #393A43;
 }
 
