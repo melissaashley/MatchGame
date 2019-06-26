@@ -58,6 +58,8 @@ header {
     @include d-flex;
     @include flex-wrap(wrap);
 
+    padding-bottom: 3rem;
+
     .tile {
         @include d-flex;
         @include flex(0, 0, 20%);

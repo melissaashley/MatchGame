@@ -184,6 +184,7 @@ header h1 {
   -ms-flex-wrap: wrap;
   /* IE 10 */
   flex-wrap: wrap;
+  padding-bottom: 3rem;
 }
 
 #game .tile {
