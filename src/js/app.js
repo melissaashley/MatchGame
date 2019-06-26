@@ -22,6 +22,7 @@ let interval;
  */
 const startGame = function( ) {
   emptyCardsArray();
+  stopTimer();
 
   // Clear board
   game.innerHTML = '';
@@ -31,14 +32,14 @@ const startGame = function( ) {
 
   generateCardBoard();
 
-  startTimer();
-
   // Reset 
   count = 0;
   moves.innerHTML = 'Moves: ' + count;
   winner.innerHTML = '';
   winner.classList.remove('won');
   timer.innerHTML = '0 seconds';
+
+  startTimer();
 }
 
 /**
@@ -170,7 +171,7 @@ const startTimer = function( ) {
  * stopTimer - stop the timer
  */
 const stopTimer = function( ) {
-  clearInterval(interval);
+  clearInterval( interval );
 }
 
 /**
